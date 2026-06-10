@@ -117,7 +117,7 @@
               </p>
 
               <div class="d-flex flex-wrap gap-2">
-                <a href="https://github.com/ccauxdev" target="_blank" class="btn-fill">
+                <a href="https://github.com/cauardev" target="_blank" class="btn-fill">
                   <i class="bi bi-github me-1"></i> GitHub
                 </a>
                 <a href="https://www.linkedin.com/in/cau%C3%A3-robson-candeias-altino-70506b3a4/" target="_blank" class="btn-line">
@@ -165,6 +165,23 @@
                 Tenho interesse em backend, construção de APIs e banco de dados. Gosto de entender
                 como as coisas funcionam por baixo dos panos e de resolver problemas de forma limpa e direta.
               </p>
+
+              <button type="button" class="btn-line mt-3" id="toggleAbout" aria-expanded="false" aria-controls="aboutExtra">
+                <i class="bi bi-plus-lg me-2"></i> Ver mais
+              </button>
+
+              <div id="aboutExtra" class="about-extra d-none mt-3" aria-hidden="true">
+                <p class="text-muted-custom lh-lg mb-3">
+                  Além disso, gosto de transformar ideias em interfaces simples, rápidas e responsivas.
+                  Este portfólio reúne um pouco da minha evolução e também mostra minha atenção com
+                  organização visual, acessibilidade básica e experiência do usuário.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="mini-pill"><i class="bi bi-lightning-charge me-1"></i> Aprendizado contínuo</span>
+                  <span class="mini-pill"><i class="bi bi-layout-text-window-reverse me-1"></i> UI responsiva</span>
+                  <span class="mini-pill"><i class="bi bi-diagram-3 me-1"></i> Organização de código</span>
+                </div>
+              </div>
             </div>
 
             <div class="col-12 col-lg-5">
@@ -282,10 +299,18 @@
           <p class="section-tag">03 — Projetos</p>
           <h2 class="mb-4">Atualmente o que estou construindo</h2>
 
+          <div class="project-toolbar d-flex flex-wrap align-items-center gap-2 mb-4" id="projectFilters" role="toolbar" aria-label="Filtros de projetos">
+            <button type="button" class="filter-btn active" data-filter="all">Todos</button>
+            <button type="button" class="filter-btn" data-filter="web">Web</button>
+            <button type="button" class="filter-btn" data-filter="documentacao">Documentação</button>
+            <button type="button" class="filter-btn" data-filter="portfolio">Portfólio</button>
+          </div>
+          <p class="text-muted-custom mb-4" id="projectCount" aria-live="polite">3 projetos exibidos</p>
+
           <div class="row g-4">
 
             <div class="col-12 col-md-6 col-lg-4">
-              <article class="proj-card h-100">
+              <article class="proj-card h-100" data-category="web">
                 <div class="proj-card-top d-flex align-items-center justify-content-between mb-3">
                   <span class="tech-badge python">
                     <i class="bi bi-filetype-py me-1"></i>Python
@@ -300,7 +325,7 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4">
-              <article class="proj-card h-100">
+              <article class="proj-card h-100" data-category="documentacao">
                 <div class="proj-card-top d-flex align-items-center justify-content-between mb-3">
                   <span class="tech-badge java">
                     <i class="bi bi-filetype-java me-1"></i>Java
@@ -315,7 +340,7 @@
             </div>
 
             <div class="col-12 col-md-12 col-lg-4">
-              <article class="proj-card proj-destaque h-100">
+              <article class="proj-card proj-destaque h-100" data-category="portfolio">
                 <div class="proj-card-top d-flex align-items-center justify-content-between mb-3">
                   <span class="tech-badge spring">
                     <i class="bi bi-leaf-fill me-1"></i>Spring
@@ -505,7 +530,7 @@
               </p>
 
               <div class="d-flex flex-column gap-2">
-                <a href="https://github.com/ccauxdev" target="_blank" class="social-item">
+                <a href="https://github.com/cauardev" target="_blank" class="social-item">
                   <i class="bi bi-github fs-5"></i>
                   <div>
                     <div class="fw-bold">GitHub</div>
@@ -563,6 +588,7 @@
                       id="mensagem" name="mensagem"
                       class="form-control form-control-custom"
                       rows="5"
+                      maxlength="240"
                       placeholder="Escreve aí..."
                       required
                     ></textarea>
@@ -571,6 +597,13 @@
                     <button type="submit" class="btn-fill w-100">
                       <i class="bi bi-send me-2"></i> Enviar mensagem
                     </button>
+                  </div>
+
+                  <div class="col-12">
+                    <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+                    <p class="form-hint mb-0">
+                      <span id="messageCount">0</span>/240 caracteres na mensagem
+                    </p>
                   </div>
                 </div>
 
@@ -605,7 +638,7 @@
 
           <div class="col-12 col-md-auto text-center text-md-end">
             <div class="footer-links d-flex gap-3 justify-content-center justify-content-md-end">
-              <a href="https://github.com/ccauxdev" target="_blank" aria-label="GitHub">
+              <a href="https://github.com/cauardev" target="_blank" aria-label="GitHub">
                 <i class="bi bi-github fs-5"></i>
               </a>
               <a href="https://www.linkedin.com/in/cau%C3%A3-robson-candeias-altino-70506b3a4/" target="_blank" aria-label="LinkedIn">
@@ -637,23 +670,8 @@
     crossorigin="anonymous"
   ></script>
 
-  <!-- Script: botão back-to-top + fechar nav ao clicar em link (mobile) -->
-  <script>
-    // Back to top
-    const btn = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      btn.classList.toggle('visible', window.scrollY > 400);
-    });
-
-    // Fecha o menu collapse ao clicar em um link (mobile)
-    document.querySelectorAll('#navMenu .nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        const collapse = document.getElementById('navMenu');
-        const bsCollapse = bootstrap.Collapse.getInstance(collapse);
-        if (bsCollapse) bsCollapse.hide();
-      });
-    });
-  </script>
+  <!-- Script customizado -->
+  <script src="js/script.js"></script>
 
 </body>
 </html>
