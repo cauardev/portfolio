@@ -714,3 +714,147 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.25rem); }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }
 }
+
+
+/* ═══════════════════════════════════════════════════
+   INTERAÇÕES JS + MELHORIAS RESPONSIVAS
+   ═══════════════════════════════════════════════════ */
+.project-toolbar {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.filter-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  transform: translateY(-1px);
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.filter-btn:focus-visible,
+.btn-line:focus-visible,
+.btn-fill:focus-visible,
+.nav-link:focus-visible,
+.toggle-label:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--text) 30%, transparent);
+  outline-offset: 2px;
+}
+
+.project-hidden {
+  display: none !important;
+}
+
+.mini-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.about-extra {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.form-feedback {
+  min-height: 26px;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.form-feedback.success { color: #198754; }
+.form-feedback.error { color: #dc3545; }
+
+.form-hint {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.form-control-custom.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+.form-control-custom.is-valid {
+  border-color: #198754 !important;
+}
+
+.contact-summary {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* Melhorias gerais de mobile */
+@media (max-width: 767.98px) {
+  .project-toolbar {
+    gap: 8px !important;
+    padding: 10px;
+  }
+
+  .filter-btn {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+
+  .social-item {
+    padding: 13px 14px;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    padding: 12px 14px;
+    white-space: normal;
+  }
+
+  .gallery-hint,
+  .video-caption,
+  .form-hint {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .filter-btn {
+    flex-basis: 100%;
+  }
+
+  .mini-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-extra {
+    padding: 16px 14px;
+  }
+}
+
+/* Estado do filtro no modo escuro já usa variáveis, sem ajustes extras */
